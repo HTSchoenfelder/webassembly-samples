@@ -1,0 +1,6 @@
+build:
+  cargo build --release --target wasm32-wasi
+publish: (build)
+  cp ./target/wasm32-wasi/release/browser_simple.wasm ./web/browser_simple.wasm
+decompile: (publish)
+  wasm2wat ./web/browser_simple.wasm -o ./web/browser_simple.wat

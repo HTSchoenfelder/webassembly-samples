@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>WebAssembly Demo</title>
+    <link rel="icon" href="favicon.svg" type="image/x-icon" />
+  </head>
+  <body>
+    <h1>WebAssembly Demo</h1>
+    <p>Calculated value: <span id="calculated-value"></span></p>
+
+    <script>
+      async function loadWasm() {
+        const response = await fetch("browser_simple.wasm");
+        const buffer = await response.arrayBuffer();
+        const wasmModule = await WebAssembly.instantiate(buffer);
+        const calculatedValue =
+          wasmModule.instance.exports.get_calculated_value();
+        document.getElementById("calculated-value").textContent =
+          calculatedValue;
+      }
+      loadWasm();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+build:
+   cd rust_sample && cargo build --release --target wasm32-wasi
+publish: (build)
+  cp ./rust_sample/target/wasm32-wasi/release/rust_sample.wasm ./rust_sample.wasm
+run: (publish)
+  dotnet run 100

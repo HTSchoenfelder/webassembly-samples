@@ -1,0 +1,8 @@
+run:
+  spin up
+push:
+  az acr build --registry webassemblydemo --image webassemblydemo.azurecr.io/fractaltree:v1 .
+deploy:
+  kubectl apply -f spin-deployment.yml
+undeploy:
+  kubectl delete -f spin-deployment.yml

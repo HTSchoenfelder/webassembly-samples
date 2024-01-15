@@ -1,0 +1,4 @@
+build:
+  cd hello-world && spin build
+run:
+  cd hello-world && spin up

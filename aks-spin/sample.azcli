@@ -1,0 +1,14 @@
+az aks nodepool add \
+--resource-group webassembly-demo \
+--cluster-name webassembly-demo \
+--name mywasipool \
+--node-count 1 \
+--workload-runtime WasmWasi
+
+az aks nodepool show --resource-group webassembly-demo --cluster-name webassembly-demo --name mywasipool --query workloadRuntime
+
+
+az aks get-credentials --resource-group webassembly-demo --name webassembly-demo
+
+az acr login --name webassemblydemo
+az acr push --name webassemblydemo --image webassemblydemo.azurecr.io/webassemblydemo:v1

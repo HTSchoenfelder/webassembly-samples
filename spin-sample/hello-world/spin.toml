@@ -1,0 +1,28 @@
+spin_manifest_version = 2
+
+[application]
+name = "hello-world"
+version = "0.1.0"
+authors = ["Henrik Schönfelder <henrik-schoenfelder@devoteam-alegri.eu>"]
+description = "hello-world sample"
+
+[[trigger.http]]
+route = "/hello-rust"
+component = "hello-rust"
+
+[[trigger.http]]
+route = "/hello-dotnet"
+component = "hello-dotnet"
+
+[component.hello-rust]
+source = "hello-rust/target/wasm32-wasi/release/hello_rust.wasm"
+allowed_outbound_hosts = []
+[component.hello-rust.build]
+command = "cd hello-rust && cargo build --target wasm32-wasi --release"
+watch = ["hello-rust/src/**/*.rs", "Cargo.toml"]
+
+[component.hello-dotnet]
+source = "hello-dotnet/bin/Release/net8.0/hello-dotnet.wasm"
+allowed_outbound_hosts = []
+[component.hello-dotnet.build]
+command = "cd hello-dotnet && dotnet build -c Release"

@@ -1,0 +1,6 @@
+build:
+  cd hello-wasm && wasm-pack build --target web
+publish: build
+  cp hello-wasm/pkg/hello_wasm_bg.wasm my-app/src/assets/hello_wasm_bg.wasm
+run: publish
+  cd my-app && npm run start

@@ -1,0 +1,4 @@
+build:
+  cargo build --release --target wasm32-wasi
+run: (build)
+  wasmtime ./target/wasm32-wasi/release/wasmtime_simple.wasm 

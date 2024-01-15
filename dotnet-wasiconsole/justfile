@@ -1,0 +1,4 @@
+run:
+  dotnet run
+run-wasmtime:
+  cd bin/Debug/net8.0/wasi-wasm/AppBundle && wasmtime run --dir . -- dotnet.wasm dotnet-wasiconsole
